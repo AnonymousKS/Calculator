@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 450px;
+    height: 450px;
+    
+}
+
+.screen-container {
+    margin: 32px 10px 0 10px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.5em;
+    background: #000;
+    color:#fff;
+    padding:0 10px;
+}
+
+
+.cal-buttons, .screen-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 100%;
+    gap: 12px;
+}
+
+.numbers, .operator {
+    width: 100px;
+    height: 50px;
+}
+
+.essential-btn {
+    width: 100%;
+    display: flex;
+    gap: 35px;
+}
+
+/* .operator button {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    
+} */
+
+.clear, .backspace {
+    width: 200px;
+    height: 50px;
+}
