@@ -16,22 +16,24 @@ body{
     gap: 32px;
     border: 1px solid black;
     border-radius: 8px;
-    width: 450px;
+    width: 500px;
     height: 450px;
-    
+    padding: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .screen-container {
-    margin: 32px 10px 0 10px;
+    width: 440px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
     height: 50px;
-    border: 1px solid black;
-    border-radius: 8px;
+    background: #eee;
     justify-content: flex-end;
     align-items: center;
     font-size: 1.5em;
-    background: #000;
-    color:#fff;
-    padding:0 10px;
 }
 
 
@@ -53,13 +55,13 @@ body{
     gap: 35px;
 }
 
-/* .operator button {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    
-} */
+.btn {
+    padding: 10px;
+    border: 2px #333 solid;
+    border-radius: 5px;
+    background-color: #eee;
+    font-size: 20px;
+  }
 
 .clear, .backspace {
     width: 200px;
