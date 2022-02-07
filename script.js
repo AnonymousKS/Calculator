@@ -9,10 +9,8 @@ const equalbtn = document.querySelector(".equal");
 const clearbtn = document.querySelector(".clear");
 const decimalbtn = document.querySelector(".decimal");
 const backspacebtn = document.querySelector(".backspace");
-const lastOperationScreen = document.getElementById("lastOperationScreen");
-const currentOperationScreen = document.getElementById(
-  "currentOperationScreen"
-);
+const previousScreen = document.querySelector(".screen-last");
+const currentScreen = document.querySelector(".screen-current");
 
 numberbtn.forEach((button) =>
   button.addEventListener("click", () => displayNumber(button.textContent))
@@ -28,50 +26,47 @@ equalbtn.addEventListener("click", evaluate);
 decimalbtn.addEventListener("click", addDecimal);
 
 function displayNumber(number) {
-  if (currentOperationScreen.textContent === "0" || resetFlag) resetScreen();
-  currentOperationScreen.textContent += number;
+  if (currentScreen.textContent === "0" || resetFlag) resetScreen();
+  currentScreen.textContent += number;
 }
 
 function resetScreen() {
-  currentOperationScreen.textContent = "";
+  currentScreen.textContent = "";
   resetFlag = false;
 }
 
 function clear() {
-  currentOperationScreen.textContent = "0";
-  lastOperationScreen.textContent = "";
+  currentScreen.textContent = "0";
+  previousScreen.textContent = "";
   firstOperand = "";
   secondOperand = "";
   currentOperation = null;
 }
 
 function backspace() {
-  currentOperationScreen.textContent = currentOperationScreen.textContent
-    .toString()
-    .slice(0, -1);
-  if (currentOperationScreen.textContent === "")
-    currentOperationScreen.textContent = "0";
+  currentScreen.textContent = currentScreen.textContent.toString().slice(0, -1);
+  if (currentScreen.textContent === "") currentScreen.textContent = "0";
 }
 
 function setOperator(operator) {
   if (currentOperation !== null) evaluate();
-  firstOperand = currentOperationScreen.textContent;
+  firstOperand = currentScreen.textContent;
   currentOperation = operator;
-  lastOperationScreen.textContent = `${firstOperand} ${currentOperation}`;
+  previousScreen.textContent = `${firstOperand} ${currentOperation}`;
   resetFlag = true;
 }
 
 function evaluate() {
   if (currentOperation === null || resetFlag) return;
-  if (currentOperation === "/" && currentOperationScreen.textContent === "0") {
-    currentOperationScreen.textContent = "You dumb or what.";
+  if (currentOperation === "/" && currentScreen.textContent === "0") {
+    currentScreen.textContent = "You dumb or what.";
     return;
   }
-  secondOperand = currentOperationScreen.textContent;
-  currentOperationScreen.textContent = roundResult(
+  secondOperand = currentScreen.textContent;
+  currentScreen.textContent = roundResult(
     operate(currentOperation, firstOperand, secondOperand)
   );
-  lastOperationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
+  previousScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
   currentOperation = null;
 }
 
@@ -81,10 +76,9 @@ function roundResult(number) {
 
 function addDecimal() {
   if (resetFlag) resetScreen();
-  if (currentOperationScreen.textContent === "")
-    currentOperationScreen.textContent = "0";
-  if (currentOperationScreen.textContent.includes(".")) return;
-  currentOperationScreen.textContent += ".";
+  if (currentScreen.textContent === "") currentScreen.textContent = "0";
+  if (currentScreen.textContent.includes(".")) return;
+  currentScreen.textContent += ".";
 }
 
 function add(a, b) {
